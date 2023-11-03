@@ -1,0 +1,30 @@
+// variables
+
+$white-color: #fff;
+$blue-color: #0f0c29;
+$light-blue-color: #302b63;
+
+// mixins
+
+@mixin flex($justify-content: center, $align-items: center, $direction: column) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    flex-direction: $direction;
+}
+
+// animations
+
+@keyframes show {
+    
+    0% {
+        transform: translateY(-25%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+
+}
