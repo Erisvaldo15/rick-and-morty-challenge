@@ -16,7 +16,7 @@
                 <span> Episodes: </span>
                 <div class="episode">
                     <span v-for="episode of apiStore.dataOfEpisodes">
-                        {{ episode.name }} - {{ episode.episode }}
+                        {{ episode.name }}
                     </span>
                 </div>
                

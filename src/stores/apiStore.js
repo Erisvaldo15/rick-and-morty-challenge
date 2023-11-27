@@ -7,19 +7,18 @@ export const useApiStore = defineStore("api", () => {
     const filterStore = useFilterStore();
     const paginationStore = usePaginationStore();
 
-    const url = ref(`https://rickandmortyapi.com/api/character/`);
+    const baseUrl = ref(`https://rickandmortyapi.com/api`);
     const data = ref([]);
-    const dataOfEpisodes = ref([])
+    const dataOfEpisodes = ref(null);
 
     async function getAllCharactersPerPage() {
         try {
-            
             filterStore.filter();
 
             const characters = await fetch(
-                `${url.value}?page=${paginationStore.currentPage}${filterStore.queryString}`
+                `${baseUrl.value}/character/?page=${paginationStore.currentPage}${filterStore.queryString}`
             );
-  
+
             data.value = await characters.json();
 
             paginationStore.maxPages = data.value.info.pages;
@@ -30,12 +29,10 @@ export const useApiStore = defineStore("api", () => {
 
     async function getCharacterById(id) {
         try {
-            const character = await fetch(`${url.value}${id}`);
+            const character = await fetch(`${baseUrl.value}/character/${id}`);
             data.value = await character.json();
             await getAllEpisodesOfCharacter(data.value.episode);
-        } 
-        
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -44,11 +41,22 @@ export const useApiStore = defineStore("api", () => {
 
         try {
 
-            for (const episode of episodes) {
-                const response = await fetch(episode)
-                dataOfEpisodes.value.push(await response.json())
+            dataOfEpisodes.value = null
+
+            let seachedEpisodes = ''
+            const regex = /[0-9]{1,}/
+
+            episodes.forEach(episode => seachedEpisodes = `${seachedEpisodes.concat(episode.match(regex))},`)
+
+            let response = await fetch(`${baseUrl.value}/episode/${seachedEpisodes.slice(0, -1)}`);
+            response = await response.json();
+
+            if(!response.length) { // verify if is array or there's no array, this helps to render the data on the screen
+                dataOfEpisodes.value = [response]
+                return
             }
 
+            dataOfEpisodes.value = response
         } 
         
         catch (error) {
