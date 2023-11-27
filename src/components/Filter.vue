@@ -13,7 +13,7 @@
             <div class="filter-group status">
                 <h2>Status:</h2>
                 <div class="filter" v-for="(status, index) of filterOptions.status" :key="status">
-                    <input type="checkbox" :value="status" v-model="statusFromCheckbox['status'][index]" :id="status"
+                    <input type="checkbox" :value="status" v-model="filterStore.statusFromCheckbox['status'][index]" :id="status"
                         @change="verifyCheckboxs('status', index)" />
                     <label :for="status">{{ status }}</label>
                 </div>
@@ -21,7 +21,7 @@
             <div class="filter-group genders">
                 <h2>Gender:</h2>
                 <div class="filter" v-for="(gender, index) of filterOptions.gender" :key="gender">
-                    <input type="checkbox" :value="gender" v-model="statusFromCheckbox['gender'][index]" :id="gender"
+                    <input type="checkbox" :value="gender" v-model="filterStore.statusFromCheckbox['gender'][index]" :id="gender"
                         @change="verifyCheckboxs('gender', index)" />
                     <label :for="gender">{{ gender }}</label>
                 </div>
@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+
 import { ref } from "vue";
 import { useFilterStore } from "../stores/filterStore";
 import { useApiStore } from "../stores/apiStore";
@@ -38,23 +39,19 @@ import { useApiStore } from "../stores/apiStore";
 const filterStore = useFilterStore();
 const apiStore = useApiStore();
 
-const showFilters = ref(false)
+const showFilters = ref(false);
 
 const filterOptions = ref({
-    status: ["alive", "dead", "unknown"],
-    gender: ["male", "female", "genderless", "unknown"],
-});
-
-const statusFromCheckbox = ref({
-    status: [false, false, false],
-    gender: [false, false, false, false],
-});
+        status: ['alive', 'dead', 'unknown'],
+        gender: ['male', 'female', 'genderless', 'unknown'],
+    });
 
 function verifyCheckboxs(typeOfFilter, index) {
     
-    const typeOfGroupOfCheckbox = statusFromCheckbox.value[typeOfFilter];
+    const typeOfGroupOfCheckbox = filterStore.statusFromCheckbox[typeOfFilter];
 
     if (typeOfGroupOfCheckbox[index]) {
+
         typeOfGroupOfCheckbox.forEach((status, indexOfStatus) => {
             if (indexOfStatus !== index) {
                 typeOfGroupOfCheckbox[indexOfStatus] = false;

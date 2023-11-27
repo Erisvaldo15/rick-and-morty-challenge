@@ -1,12 +1,17 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
-import { usePaginationStore } from "./paginationStore";
-import { useApiStore } from "./apiStore";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
+import { usePaginationStore } from './paginationStore';
 
-export const useFilterStore = defineStore("filter", () => {
+export const useFilterStore = defineStore('filter', () => {
 
     const paginationStore = usePaginationStore();
-    const queryString = ref("");
+
+    const statusFromCheckbox = ref({
+        status: [false, false, false],
+        gender: [false, false, false, false],
+    });
+
+    const queryString = ref('');
     const filters = ref([]);
 
     function removeFilter(typeOfFilter) {
@@ -19,19 +24,15 @@ export const useFilterStore = defineStore("filter", () => {
 
     function addFilter(typeOfFilter, valueForFilter) {
         filters.value.push({ [typeOfFilter]: valueForFilter });
-        paginationStore.currentPage = 1
+        paginationStore.currentPage = 1;
     }
 
     function filter() {
-
-        queryString.value = "";
+        queryString.value = '';
 
         filters.value.forEach((filter) => {
-
             for (const key in filter) {
-
                 if (Object.hasOwnProperty.call(filter, key)) {
-
                     if (queryString.value.includes(key)) {
                         return;
                     }
@@ -42,7 +43,5 @@ export const useFilterStore = defineStore("filter", () => {
         });
     }
 
-    function filterValidation() {}
-
-    return { addFilter, removeFilter, filter, queryString, filters };
+    return { statusFromCheckbox, queryString, filters, addFilter, removeFilter, filter };
 });
