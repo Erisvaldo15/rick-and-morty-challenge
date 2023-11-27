@@ -10,10 +10,6 @@ import Pagination from '../components/Pagination.vue'
 </script>
 
 <template>
-    <div id="wrapper">
-        <Search />
-        <Filter />
-    </div>
     <div class="container">
         <Suspense>
             <CharactersList />
@@ -30,11 +26,6 @@ import Pagination from '../components/Pagination.vue'
 .container {
     height: 50rem;
     overflow: auto;
-}
-
-#wrapper {
-    @include flex(space-between, center, row);
-    gap: 2rem;
 }
 
 </style>

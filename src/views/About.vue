@@ -21,11 +21,11 @@ import Character from '../components/Character.vue';
 #back {
     background-color: $white-color;
     padding: 1rem 2rem;
-    color: $blue-color;
+    // color: $blue-color;
     transition: 0.3s ease-in-out;
 
     &:hover {
-        background-color: $blue-color;
+        // background-color: $blue-color;
         color: $white-color;
     }
 }

@@ -91,7 +91,7 @@ function verifyCheckboxs(typeOfFilter, index) {
         justify-content: center;
         background-color: $white-color;
         font-size: 1.4rem;
-        color: $light-blue-color;
+        // color: $light-blue-color;
         padding: 1.2rem 3.2rem;
         border-radius: 0.5rem;
         gap: 0.8rem;
@@ -101,7 +101,7 @@ function verifyCheckboxs(typeOfFilter, index) {
         cursor: pointer;
 
         &:hover {
-            background-color: $light-blue-color;
+            // background-color: $light-blue-color;
             color: $white-color;
 
             fill: $white-color;
@@ -113,7 +113,7 @@ function verifyCheckboxs(typeOfFilter, index) {
     display: none;
     gap: 2rem;
     position: absolute;
-    background-color: $blue-color;
+    // background-color: $blue-color;
     padding: 3rem;
     width: auto;
     height: 20rem;

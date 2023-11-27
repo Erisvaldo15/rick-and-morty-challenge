@@ -68,14 +68,14 @@ table {
 
             a.more-details {
                 background-color: $white-color;
-                color: $blue-color;
+                // color: $blue-color;
                 padding: 1rem;
                 border-radius: 0.5rem;
                 border: none;
                 transition: 0.3s ease-in-out;
 
                 &:hover {
-                    background-color: $blue-color;
+                    // background-color: $blue-color;
                     color: $white-color;
                 }
             }

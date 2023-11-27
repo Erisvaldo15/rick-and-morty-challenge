@@ -1,8 +1,16 @@
 <template>
+    <header>
+        <h2>Rick And Morty</h2>
+        <Search />
+    </header>
     <main>
         <RouterView />
     </main>
 </template>
+
+<script setup>
+import Search from './components/Search.vue';
+</script>
 
 <style lang="scss">
 * {
@@ -17,23 +25,27 @@
 }
 
 body {
-    background: linear-gradient(to right, #24243e, #1a1743, #0f0c29);
-    color: $white-color;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 1.6rem;
-    height: 100vh;
 }
 
 #app {
 
-    height: 100%;
-    @include flex();
+    header {
+        @include flex(space-evenly, center, row);
+        flex-wrap: wrap;
+        gap: 1rem;
+        background-color: $black-color;
+        padding: 1.6rem;
+        color: $white-color;
+    }
 
     main {
+        background-color: $mid-white;
         @include flex(start);
         gap: 6rem;
         padding: 4rem;
-        width: 100%;
+        height: calc(100vh - 8.2rem);
     }
 
     *::-webkit-scrollbar {

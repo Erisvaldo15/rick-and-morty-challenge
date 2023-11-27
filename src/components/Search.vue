@@ -43,11 +43,13 @@ function debounce(func, wait) {
 </script>
 
 <style lang="scss">
+
 #field {
+    background-color: $white-color;
+    max-width: 71.8rem;
     @include flex(start, center, row);
     width: 100%;
-    background-color: $white-color;
-    border: 0.07rem solid #303030;
+    border: none;
     border-radius: 0.8rem;
     height: 5rem;
     box-shadow: 0 0.4rem 1.6rem 0 rgba(22, 22, 22, 0.1);

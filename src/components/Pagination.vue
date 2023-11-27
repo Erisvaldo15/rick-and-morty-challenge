@@ -36,18 +36,18 @@
         @include flex(center, center, row);
         width: 4rem;
         height: 4rem;
-        background-color: $blue-color;
+        // background-color: $blue-color;
         color: $white-color;
         clip-path: circle();
         cursor: pointer;
 
         &:hover {
-            background-color: $light-blue-color;
+            // background-color: $light-blue-color;
         }
     }
 
     .current-page {
-        background-color: $light-blue-color;
+        // background-color: $light-blue-color;
     }
 
     button {
