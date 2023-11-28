@@ -18,6 +18,7 @@ import Search from './components/Search.vue';
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -29,8 +30,17 @@ body {
     font-size: 1.6rem;
 }
 
-#app {
+*::-webkit-scrollbar {
+    width: 1rem;
+}
 
+*::-webkit-scrollbar-thumb {
+    background: $black-color;
+    border-radius: 99rem;
+    margin-right: 1rem;
+}
+
+#app {
     header {
         @include flex(space-evenly, center, row);
         flex-wrap: wrap;
@@ -42,20 +52,9 @@ body {
 
     main {
         background-color: $mid-white;
-        @include flex(start);
         gap: 6rem;
-        padding: 4rem;
-        height: calc(100vh - 8.2rem);
-    }
-
-    *::-webkit-scrollbar {
-        width: 1rem;
-    }
-
-    *::-webkit-scrollbar-thumb {
-        background: $white-color;
-        border-radius: 99rem;
-        margin-right: 1rem;
+        padding: 4rem 6rem;
+        min-height: 100vh;
     }
 }
 
@@ -64,4 +63,15 @@ body {
 button {
     border: none;
 }
+
+@media screen and (max-width: 1440px) {
+    #app main {
+        padding: 0;
+
+        #filter-section {
+            padding: 2rem;
+        }
+    }
+}
+
 </style>

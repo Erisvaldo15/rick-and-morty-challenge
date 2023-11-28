@@ -1,83 +1,59 @@
 <template>
-    <table v-if="apiStore.data.results">
-        <thead>
-            <th> id </th>
-            <th> image </th>
-            <th> name </th>
-            <th> specie </th>
-            <th> Details</th>
-        </thead>
-
-        <tbody>
-            <tr v-for="character in apiStore.data.results">
-                <td> {{ character.id }} </td>
-                <td>
-                    <img :src="character.image" alt="">
-                </td>
-                <td> {{ character.name }} </td>
-                <td> {{ character.species }} </td>
-                <td>
-                    <RouterLink :to="{ name: 'about', params: { id: character.id } }" class="more-details"> More Details
-                    </RouterLink>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <template v-if="apiStore.data.results">
+        <div class="character" v-for="character in apiStore.data.results">
+            <img :src="character.image" alt="Character image" />
+            <div class="character-description">
+                <h3>{{ character.name }}</h3>
+                <RouterLink
+                    :to="{ name: 'about', params: { id: character.id } }"
+                    class="more-details">
+                    More Details
+                </RouterLink>
+            </div>
+        </div>
+    </template>
     <template v-else>
-        <h2> {{ apiStore.data.error }}</h2>
+        <h2>{{ apiStore.data.error }}.</h2>
     </template>
 </template>
 
 <script setup>
-
 import { useApiStore } from '../stores/apiStore';
 
-const apiStore = useApiStore()
+const apiStore = useApiStore();
 
-await apiStore.getAllCharactersPerPage()
-
+await apiStore.getAllCharactersPerPage();
 </script>
 
 <style lang="scss">
-table {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    border: none;
-    text-align: center;
-    overflow: auto;
+.character {
+    max-width: 35rem;
+    width: 100%;
+    background-color: $white-color;
+    border-radius: 0.8rem;
+    box-shadow: 0 1rem 1.6rem 0 rgba(22, 22, 22, 0.1);
 
-    thead {
-        box-shadow: 0 0.05rem 1rem rgb(33, 33, 33);
-
-        th {
-            padding: 1rem 2rem;
-            text-transform: uppercase;
-        }
+    img {
+        width: 100%;
+        border-radius: 1rem;
     }
 
-    tbody {
+    .character-description {
+        padding: 2.269rem;
 
-        td {
-            padding: 4rem 2rem;
+        h3 {
+            margin-bottom: 2.2rem;
+        }
 
-            img {
-                width: 15rem;
-                height: 15rem;
-                clip-path: circle();
-                object-fit: contain;
-            }
+        .more-details {
+            background-color: $black-color;
+            color: $white-color;
+            padding: 1rem;
 
-            a.more-details {
+            &:hover {
                 background-color: $white-color;
-                // color: $blue-color;
-                padding: 1rem;
-                border-radius: 0.5rem;
-                border: none;
-                transition: 0.3s ease-in-out;
-
-                &:hover {
-                    // background-color: $blue-color;
-                    color: $white-color;
-                }
+                color: $black-color;
+                transition: 0.25s ease-in-out;
             }
         }
     }
