@@ -13,6 +13,7 @@
 <script setup>
 import { useApiStore } from "../stores/apiStore";
 import { useFilterStore } from "../stores/filterStore";
+import { useRouter } from "vue-router";
 
 const filterStore = useFilterStore();
 

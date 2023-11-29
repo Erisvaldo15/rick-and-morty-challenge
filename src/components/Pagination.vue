@@ -1,29 +1,29 @@
 <template>
     <div id="pagination" v-if="apiStore.data.results">
         <template v-if="paginationStore.currentPage > 1">
-            <div class="control" id="next" @click="paginationStore.firstPage()">
+            <a href="#" class="control" id="next" @click="paginationStore.firstPage()">
                 &lt;&lt;
-            </div>
-            <div class="control" id="next" @click="paginationStore.prev()">
+            </a>
+            <a href="#" class="control" id="next" @click="paginationStore.prev()">
                 &lt;
-            </div>
+            </a>
         </template>
-        <button
-            type="button"
+        <a
+            href="#"
             class="control"
             :class="{ 'current-page': number === paginationStore.currentPage }"
             v-for="number of paginationStore.formatterPagination()"
             :key="number"
             @click="paginationStore.page(number)">
             {{ number }}
-        </button>
+        </a>
         <template v-if="paginationStore.maxPages > paginationStore.currentPage">
-            <div class="control" id="next" @click="paginationStore.next()">
+            <a href="#" class="control" id="next" @click="paginationStore.next()">
                 >
-            </div>
-            <div class="control" id="next" @click="paginationStore.lastPage()">
+            </a>
+            <a href="#" class="control" id="next" @click="paginationStore.lastPage()">
                 >>
-            </div>
+            </a>
         </template>
     </div>
 </template>
@@ -64,8 +64,5 @@ const paginationStore = usePaginationStore();
         background-color: $light-black;
     }
 
-    button {
-        padding: 1rem;
-    }
 }
 </style>

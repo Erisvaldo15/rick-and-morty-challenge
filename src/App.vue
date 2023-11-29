@@ -1,16 +1,13 @@
 <template>
     <header>
-        <h2>Rick And Morty</h2>
-        <Search />
+        <h2>
+            <a href="/"> Rick and Morty </a>
+        </h2>
     </header>
     <main>
         <RouterView />
     </main>
 </template>
-
-<script setup>
-import Search from './components/Search.vue';
-</script>
 
 <style lang="scss">
 * {
@@ -42,19 +39,23 @@ body {
 
 #app {
     header {
-        @include flex(space-evenly, center, row);
+        @include flex(center, center, row);
         flex-wrap: wrap;
         gap: 1rem;
         background-color: $black-color;
         padding: 1.6rem;
-        color: $white-color;
+
+        a {
+            color: $white-color;
+        }
+       
     }
 
     main {
         background-color: $mid-white;
         gap: 6rem;
         padding: 4rem 6rem;
-        min-height: 100vh;
+        min-height: calc(100vh - 6.2rem);
     }
 }
 
@@ -66,7 +67,17 @@ button {
 
 @media screen and (max-width: 1440px) {
     #app main {
+        
         padding: 0;
+
+        #wrapper-character {
+
+            padding: 4rem;
+
+            #character {
+                justify-content: center;
+            }
+        }
 
         #filter-section {
             padding: 2rem;

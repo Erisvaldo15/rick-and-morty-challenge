@@ -1,14 +1,16 @@
 <script setup>
 import { Suspense } from 'vue';
 
+import Search from '../components/Search.vue';
 import Filter from '../components/Filter.vue';
 import CharactersList from '../components/CharactersList.vue';
 import Pagination from '../components/Pagination.vue';
+
 </script>
 
 <template>
     <div id="filter-section">
-        <h3>characters</h3>
+        <Search />
         <Filter />
     </div>
     <div id="characters">
@@ -26,7 +28,7 @@ import Pagination from '../components/Pagination.vue';
 <style lang="scss">
 
 #filter-section {
-    @include flex(space-between, center, row);
+    @include flex(center, center, row);
     flex-wrap: wrap;
     gap: 2rem;
     
@@ -38,7 +40,7 @@ import Pagination from '../components/Pagination.vue';
 
 #characters {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 35rem));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     justify-content: center;
     gap: 2.22rem;
     margin-top: 3.6rem;

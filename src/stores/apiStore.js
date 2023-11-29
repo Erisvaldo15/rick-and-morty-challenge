@@ -21,9 +21,9 @@ export const useApiStore = defineStore("api", () => {
 
             data.value = await characters.json();
 
-            paginationStore.maxPages = data.value.info.pages;
+            paginationStore.maxPages = data.value.info.pages ?? 1;
         } catch (error) {
-            console.log("Ops... " + error);
+            console.log("Ops... there's nothing character");
         }
     }
 
