@@ -21,7 +21,6 @@ import Pagination from '../components/Pagination.vue';
             </template>
         </Suspense>
     </div>
-
     <Pagination />
 </template>
 
@@ -40,7 +39,7 @@ import Pagination from '../components/Pagination.vue';
 
 #characters {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
     justify-content: center;
     gap: 2.22rem;
     margin-top: 3.6rem;

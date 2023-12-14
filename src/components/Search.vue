@@ -69,6 +69,11 @@ function debounce(func, wait) {
         margin: 0.8rem;
         outline: none;
         border: none;
+        
+        &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px $white-color inset;
+        }
+
     }
 }
 </style>

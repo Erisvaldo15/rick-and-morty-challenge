@@ -41,6 +41,7 @@ await apiStore.getCharacterById(route.params.id);
     animation: show 1s ease-in-out;
 
     img {
+        max-width: 100%;
         clip-path: circle();
     }
 
@@ -57,7 +58,7 @@ await apiStore.getCharacterById(route.params.id);
         }
 
         #episodes {
-            width: 40rem;
+            max-width: 40rem;
             height: 25rem;
             @include flex(start, center);
             overflow-y: auto;
