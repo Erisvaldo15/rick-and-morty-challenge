@@ -40,7 +40,7 @@ import Pagination from '../components/Pagination.vue';
 #characters {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
-    justify-content: center;
+    justify-items: center;
     gap: 2.22rem;
     margin-top: 3.6rem;
     height: 100%;
