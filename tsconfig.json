@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "types": ["node"] // Include Node.js types if needed
+  },
+  "extends": [
+    "@tsconfig/node20/tsconfig.json", // Extend Node.js config first
+    "@vue/tsconfig/tsconfig.dom.json"  // Then extend the Vue config
+  ]
+}

@@ -1,14 +1,14 @@
 <template>
-    <div id="character" v-if="apiStore.data">
-        <img :src="apiStore.data.image" :alt="apiStore.data.name" />
+    <div id="character" v-if="apiStore.chosenCharacter">
+        <img :src="apiStore.chosenCharacter.image" :alt="apiStore.chosenCharacter.name" />
         <div id="informations">
-            <h1>{{ apiStore.data.name }}</h1>
-            <p><span> Gender: </span> {{ apiStore.data.gender }}</p>
-            <p><span> Status: </span> {{ apiStore.data.status }}</p>
-            <p><span> Location: </span> {{ apiStore.data.location.name }}</p>
+            <h1>{{ apiStore.chosenCharacter.name }}</h1>
+            <p><span> Gender: </span> {{ apiStore.chosenCharacter.gender }}</p>
+            <p><span> Status: </span> {{ apiStore.chosenCharacter.status }}</p>
+            <p><span> Location: </span> {{ apiStore.chosenCharacter.location.name }}</p>
             <div id="episodes">
-                <span> Episodes ({{ apiStore.dataOfEpisodes.length }}): </span>
-                <div class="episode" v-for="episode of apiStore.dataOfEpisodes">
+                <span> Episodes ({{ apiStore.episodesData.length }}): </span>
+                <div class="episode" v-for="episode of apiStore.episodesData">
                     <p> 
                         Episode name: {{ episode.name }}
                     </p> 
