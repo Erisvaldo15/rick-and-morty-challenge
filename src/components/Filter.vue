@@ -30,52 +30,40 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 import { ref } from "vue";
 import { useFilterStore } from "../stores/filterStore";
 import { useApiStore } from "../stores/apiStore";
 
+interface FilterOptions {
+    [key: string]: string[],
+}
+
 const filterStore = useFilterStore();
 const apiStore = useApiStore();
 
-const showFilters = ref(false);
+const showFilters = ref<boolean>(false);
+const filterOptions = ref<FilterOptions>({
+    status: ['alive', 'dead', 'unknown'],
+    gender: ['male', 'female', 'genderless', 'unknown'],
+});
 
-const filterOptions = ref({
-        status: ['alive', 'dead', 'unknown'],
-        gender: ['male', 'female', 'genderless', 'unknown'],
-    });
+async function verifyCheckboxs(filterType: string, index: number): Promise<void> {
 
-function verifyCheckboxs(typeOfFilter, index) {
-    
-    const typeOfGroupOfCheckbox = filterStore.statusFromCheckbox[typeOfFilter];
+    const checkboxGroup: boolean[] = filterStore.statusFromCheckbox[filterType];
 
-    if (typeOfGroupOfCheckbox[index]) {
-
-        typeOfGroupOfCheckbox.forEach((status, indexOfStatus) => {
-            if (indexOfStatus !== index) {
-                typeOfGroupOfCheckbox[indexOfStatus] = false;
-            }
-        });
-
-        filterStore.removeFilter(
-            typeOfFilter,
-            filterOptions.value[typeOfFilter][index]
-        );
-        filterStore.addFilter(
-            typeOfFilter,
-            filterOptions.value[typeOfFilter][index]
-        );
+    if (checkboxGroup[index]) { // verifica se index clicado é verdadeiro.
+        checkboxGroup.find((_, checkboxIndex: number) => (checkboxIndex !== index) ? checkboxGroup[checkboxIndex] = false : '') 
+        filterStore.removeFilter(filterType);
+        filterStore.addFilter(filterType, filterOptions.value[filterType][index]);
     } 
     
     else {
-        filterStore.removeFilter(
-            typeOfFilter,
-            filterOptions.value[typeOfFilter][index]
-        );
+        filterStore.removeFilter(filterType);
     }
 
-    apiStore.getAllCharactersPerPage()
+    await apiStore.getAllCharactersPerPage()
 }
 </script>
 
@@ -84,8 +72,7 @@ function verifyCheckboxs(typeOfFilter, index) {
 #filter {
     position: relative;
     gap: 1.6rem;
-    // margin: 3.2rem 0;
-
+  
     button {
         display: flex;
         justify-content: center;

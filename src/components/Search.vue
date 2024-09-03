@@ -10,19 +10,19 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useApiStore } from "../stores/apiStore";
 import { useFilterStore } from "../stores/filterStore";
-import { useRouter } from "vue-router";
 
 const filterStore = useFilterStore();
 
-function verifyIfFieldIsEmpty(event) {
-    const typedValue = event.target.value;
+function verifyIfFieldIsEmpty(event: InputEvent) {
 
-    if (typedValue.length > 0) {
+    const input: HTMLInputElement = event.target as HTMLInputElement;
+
+    if (input.value.trim().length > 0) {
         filterStore.removeFilter("name"); // remove old filter for add other.
-        filterStore.addFilter("name", typedValue);
+        filterStore.addFilter("name", input.value);
     } else {
         filterStore.removeFilter("name");
     }

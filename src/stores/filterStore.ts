@@ -4,42 +4,44 @@ import { usePaginationStore } from './paginationStore';
 
 export const useFilterStore = defineStore('filter', () => {
 
-    const paginationStore = usePaginationStore();
-
-    const statusFromCheckbox = ref({
-        status: [false, false, false],
-        gender: [false, false, false, false],
-    });
-
-    const queryString = ref('');
-    const filters = ref([]);
-
-    function removeFilter(typeOfFilter) {
-        filters.value.forEach((filter, index) => {
-            if (filter[typeOfFilter]) {
-                filters.value.splice(index, 1);
-            }
-        });
+    interface CheckboxStatus {
+        [key: string]: boolean[], // ensure that i can pass the key without any type issue.
+        status: boolean[],
+        gender: boolean[],
     }
 
-    function addFilter(typeOfFilter, valueForFilter) {
-        filters.value.push({ [typeOfFilter]: valueForFilter });
+    interface Filter {
+        [key: string]: string;
+    }
+
+    const paginationStore = usePaginationStore();
+
+    const queryString = ref<string>("");
+    const filters = ref<Filter[]>([]);
+    const statusFromCheckbox = ref<CheckboxStatus>({
+        'status': [false, false, false],
+        'gender': [false, false, false, false],
+    });
+
+    function removeFilter(filterType: string): void { // gender
+        const foundFilterIndex: number = filters.value.findIndex((filter) => filter[filterType]);
+        filters.value.splice(foundFilterIndex, 1); // removing passed filter
+        console.log(filters.value)
+    }
+
+    function addFilter(filterType: string, filterValue: string): void {
+        filters.value.push({ [filterType]: filterValue });
         paginationStore.currentPage = 1;
     }
 
-    function filter() {
-        queryString.value = '';
-
+    function filter(): void {
+        queryString.value = "";
         filters.value.forEach((filter) => {
-            for (const key in filter) {
-                if (Object.hasOwnProperty.call(filter, key)) {
-                    if (queryString.value.includes(key)) {
-                        return;
-                    }
-
-                    queryString.value += `&${key}=${filter[key].toLowerCase()}`;
+            Object.keys(filter).forEach((key) => {
+                if (!queryString.value.includes(key)) {
+                    queryString.value += `&${key.toLowerCase()}=${filter[key]}`;
                 }
-            }
+            });
         });
     }
 

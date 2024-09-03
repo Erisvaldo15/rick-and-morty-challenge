@@ -81,6 +81,7 @@ export const useApiStore = defineStore("api", () => {
     }
     return {
         data,
+        chosenCharacter,
         episodesData,
         getAllCharactersPerPage,
         getCharacterById,
