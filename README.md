@@ -1,7 +1,7 @@
 <h1 align="center"> Rick and Morty </h1>
 
 <p align="center">
-  Desafio realizado proposto por uma vaga no qual me candidatei.
+  Desafio técnico realizado para uma vaga.
 </p>
 
 <p align="center">
@@ -29,6 +29,7 @@
 
 - HTML e SASS;
 - Vue;
+- TS;
 - [Vite](https://vitejs.dev/);
 - NPM.
 

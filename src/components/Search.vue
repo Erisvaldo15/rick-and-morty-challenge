@@ -21,7 +21,7 @@ function verifyIfFieldIsEmpty(event: InputEvent) {
     const input: HTMLInputElement = event.target as HTMLInputElement;
 
     if (input.value.trim().length > 0) {
-        filterStore.removeFilter("name"); // remove old filter for add other.
+        filterStore.removeFilter("name"); 
         filterStore.addFilter("name", input.value);
     } else {
         filterStore.removeFilter("name");

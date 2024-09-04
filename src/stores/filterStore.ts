@@ -23,10 +23,9 @@ export const useFilterStore = defineStore('filter', () => {
         'gender': [false, false, false, false],
     });
 
-    function removeFilter(filterType: string): void { // gender
+    function removeFilter(filterType: string): void { 
         const foundFilterIndex: number = filters.value.findIndex((filter) => filter[filterType]);
-        filters.value.splice(foundFilterIndex, 1); // removing passed filter
-        console.log(filters.value)
+        filters.value.splice(foundFilterIndex, 1); 
     }
 
     function addFilter(filterType: string, filterValue: string): void {

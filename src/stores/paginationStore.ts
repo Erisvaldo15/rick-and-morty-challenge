@@ -7,28 +7,28 @@ export const usePaginationStore = defineStore("pagination", () => {
     const currentPage = ref<number>(1);
     const maxPages = ref<number>(1);
 
-    async function next() {
+    async function next(): Promise<void> {
         currentPage.value++;
         await apiStore.getAllCharactersPerPage();
     }
     
-    async function lastPage() {
+    async function lastPage(): Promise<void> {
         currentPage.value = maxPages.value;
         await apiStore.getAllCharactersPerPage();
     }
 
-    async function page(page: number) {
+    async function page(page: number): Promise<void> {
         if (maxPages.value === 1) return;
         currentPage.value = page;
         await apiStore.getAllCharactersPerPage();
     }
 
-    async function prev() {
+    async function prev(): Promise<void> {
         currentPage.value--;
         await apiStore.getAllCharactersPerPage();
     }
 
-    async function firstPage() {
+    async function firstPage(): Promise<void> {
         currentPage.value = 1;
         await apiStore.getAllCharactersPerPage();
     }
